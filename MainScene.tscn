@@ -53,13 +53,3 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="GUI"]
-
-[node name="Label" type="Label" parent="."]
-margin_left = 175.561
-margin_top = 392.652
-margin_right = 617.561
-margin_bottom = 627.652
-text = "tyt"
-__meta__ = {
-"_edit_use_anchors_": false
-}
