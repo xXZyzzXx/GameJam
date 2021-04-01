@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/KinematicBody2D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/BarScene.gd" type="Script" id=3]
 [ext_resource path="res://Data/GUI/barbg.jpg" type="Texture" id=4]
 
@@ -23,5 +23,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -137.907, -18.4998 )
+[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
