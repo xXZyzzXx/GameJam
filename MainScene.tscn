@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/InventoryBtn.gd" type="Script" id=1]
+[ext_resource path="res://Data/GUI/rect.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/GUI.gd" type="Script" id=3]
+[ext_resource path="res://Data/GUI/bg.jpg" type="Texture" id=4]
+[ext_resource path="res://Data/Assets/player.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Inventory.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Bg" type="NinePatchRect" parent="."]
+margin_top = -1.88776
+margin_right = 1280.0
+margin_bottom = 718.112
+texture = ExtResource( 4 )
+region_rect = Rect2( 217.694, 108.114, 1545.87, 950.692 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="Node2D" parent="Bg"]
+
+[node name="Sprite" type="AnimatedSprite" parent="Bg/Player"]
+position = Vector2( 393.777, 522.067 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource( 3 )
+
+[node name="Inventory" parent="GUI" instance=ExtResource( 6 )]
+
+[node name="InventoryBtn" type="TextureButton" parent="GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -80.0
+margin_bottom = 80.0
+texture_normal = ExtResource( 2 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="GUI"]
