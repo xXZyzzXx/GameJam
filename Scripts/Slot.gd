@@ -1,18 +1,19 @@
-extends Control
+extends TextureButton
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-func _init():
-	#GameData.current_scene = get_node("Bg")
-	pass
+signal slot_pressed(item)
+var item
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+func _pressed():
+	emit_signal("slot_pressed", item)
