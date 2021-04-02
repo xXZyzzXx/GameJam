@@ -2,18 +2,27 @@ extends KinematicBody2D
 
 export (int) var speed = 300
 
-var velocity = Vector2()
+var velo = Vector2()
 var target = Vector2()
+var get = 0
 
 # Необходимо сделать передвижение только по оси х. 
 # Определить, вправо или влево повернутуть персонажа и сделать $Sprite.flip_h 
 
-func _input(event):
-	if event.is_action_pressed("left_click"):
-		target.x = get_viewport().get_mouse_position().x
-		print(target, " ", position.x)
-
 func _physics_process(delta):
+	var mous = get_local_mouse_position()
+	if mous.x < 0:
+		get = -300
+	elif mous.x > 0:
+		get = 300
+	else:
+		get = 0
+	if Input.is_action_just_pressed("click"):
+		velo.x = get
+	else:
+		velo.x = 0
+
+func _process(delta):
 	#velocity = position.direction_to(target) * speed
 	#if position.distance_to(target) > 5:
 	if target.x < position.x:
