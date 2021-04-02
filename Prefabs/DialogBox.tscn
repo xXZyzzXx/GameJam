@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Data/Fonts/hacked.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Data/Assets/call_icon.webp" type="Texture" id=2]
+[ext_resource path="res://Data/GUI/rect.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/DialogBox.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 1 )
+
+[node name="DialogBox" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -325.0
+margin_right = 325.0
+margin_bottom = 150.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBox" type="HBoxContainer" parent="Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="NinePatchRect" parent="Bg/HBox"]
+margin_right = 150.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 150, 150 )
+texture = ExtResource( 3 )
+
+[node name="Icon" type="TextureRect" parent="Bg/HBox/Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Bg/HBox"]
+margin_left = 150.0
+margin_right = 650.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Bg/HBox/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -20.0
+margin_bottom = -10.0
+custom_fonts/font = SubResource( 1 )
+text = "What i'm? Why i'm there? HELP ME"
+__meta__ = {
+"_edit_use_anchors_": false
+}
