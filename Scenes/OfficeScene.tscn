@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://Data/GUI/stealth_bg.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/BarScene.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
 [ext_resource path="res://Data/GUI/barbg.jpg" type="Texture" id=4]
-[ext_resource path="res://Data/GUI/stealth_bg.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Bg.gd" type="Script" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -24,58 +23,47 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/MainScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/BarScene.tscn\")
 "
 
-[node name="BarScene" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 818.0
-script = ExtResource( 3 )
+[node name="OfficeScene" type="Control"]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ParallaxBg" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Parallax" type="ParallaxLayer" parent="ParallaxBg"]
-visible = false
-motion_scale = Vector2( 0.3, 1 )
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.8, 1 )
 motion_mirroring = Vector2( 1280, 0 )
 
-[node name="CityBg" type="TextureRect" parent="ParallaxBg/Parallax"]
+[node name="NinePatchRect" type="NinePatchRect" parent="ParallaxBackground/ParallaxLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1280.0
 margin_bottom = 720.0
-mouse_filter = 2
 texture = ExtResource( 4 )
-expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bg" type="NinePatchRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 102.0
-margin_bottom = 6.10352e-05
-texture = ExtResource( 5 )
-region_rect = Rect2( 9, 10, 830, 459 )
-patch_margin_right = 56
-script = ExtResource( 6 )
+margin_right = 1970.0
+margin_bottom = 720.0
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 634.488, 515.492 )
+position = Vector2( 600.012, 516.224 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 133.102
-margin_top = 58.5355
-margin_right = 264.102
-margin_bottom = 111.536
+margin_left = 141.897
+margin_top = 79.5403
+margin_right = 251.897
+margin_bottom = 127.54
 script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

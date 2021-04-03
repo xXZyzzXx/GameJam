@@ -16,3 +16,4 @@ func _ready():
 #	pass
 func _pressed():
 	emit_signal("inventory_pressed")
+	Gui._clear_selected_item()
