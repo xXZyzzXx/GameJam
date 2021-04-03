@@ -34,6 +34,8 @@ func _input(event):
 		
 func show_dialog(text, image=null, time=1.5):
 	if current_tree or current_dialog == text:
+		if current_dialog == text:
+			close_timer.start()
 		return
 	if current_dialog:
 		open_new_dialog = false

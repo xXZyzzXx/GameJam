@@ -21,11 +21,11 @@ var object_dialog = \"Что тут можно надеяться найти?\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var gear_image = Image.new()
-	gear_image.load(\"res://Data/Assets/Items/trash.png\")
-	var gear_mask = BitMap.new()
-	gear_mask.create_from_image_alpha(gear_image)
-	texture_click_mask = gear_mask
+	var image = Image.new()
+	image.load(\"res://Data/Assets/Items/trash.png\")
+	var mask = BitMap.new()
+	mask.create_from_image_alpha(image)
+	texture_click_mask = mask
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,7 +63,11 @@ var second_object_dialog = \"Вокруг одни рыбы..\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var image = Image.new()
+	image.load(\"res://Data/Assets/Items/sea_window.png\")
+	var mask = BitMap.new()
+	mask.create_from_image_alpha(image)
+	texture_click_mask = mask
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

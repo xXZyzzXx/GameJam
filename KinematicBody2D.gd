@@ -15,6 +15,7 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed('left_click'):
 		target = get_global_mouse_position()
+		moving_to_object = false
 		#print(target)
 
 func move_to_object(object):
