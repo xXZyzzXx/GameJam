@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Data/Assets/light.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Block.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -14,7 +15,7 @@ polygon = PoolVector2Array( -9.86388, 10.0723, 10.0047, 9.88348, 10.0518, -9.890
 position = Vector2( 55.092, 19.0703 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 571.419, 471.918 )
+position = Vector2( 567.643, 570.081 )
 scale = Vector2( 5, 5 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -32,15 +33,19 @@ texture = ExtResource( 3 )
 occluder = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 244.37, -82.9375 )
+position = Vector2( 561.87, 383.233 )
 texture = ExtResource( 1 )
 texture_scale = 2.0
+energy = 0.75
 shadow_enabled = true
 shadow_color = Color( 0, 0, 0, 1 )
 shadow_filter_smooth = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 569.36, 435.968 )
-scale = Vector2( 10, 10 )
+position = Vector2( 571.88, 342.734 )
+scale = Vector2( 20.5518, 12.9136 )
 z_index = -1
 texture = ExtResource( 3 )
+
+[node name="Block" parent="." instance=ExtResource( 4 )]
+position = Vector2( 580.951, 365.03 )
