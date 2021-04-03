@@ -5,6 +5,7 @@ onready var close_timer = get_node("Timer")
 onready var anim_player = get_node("AnimationPlayer")
 onready var label = get_node("Bg/HBox/Control/Label")
 onready var dialog_icon = get_node("Bg/HBox/Bg/Icon")
+onready var hint = get_node("HintBg")
 onready var default_icon = load("res://Data/Assets/call_icon.webp")
 var close_by_skip = false
 var current_tree = null 
@@ -14,6 +15,7 @@ var current_dialog = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hint.hide()
 	close_timer.one_shot = true
 	close_timer.connect("timeout", self, "_timeout")
 
@@ -51,14 +53,14 @@ func show_dialog(text, image=null, time=1.5):
 			dialog_icon.texture = image
 		else:
 			dialog_icon.texture = default_icon
-	anim_player.play("open")
+	open_dialog()
 		
 func show_dialog_tree(dialog):
 	var dialog_list = Data.dialogs.get(dialog)
 	current_dialog = null
 	current_tree = dialog_list.duplicate(true)
 	existed_dialog_tree = dialog_list.duplicate(true)
-	anim_player.play("open")
+	open_dialog()
 	_get_next_dialog_from_tree()
 	
 func _get_next_dialog_from_tree():
@@ -69,6 +71,13 @@ func _get_next_dialog_from_tree():
 		existed_dialog_tree.erase(phrase)
 	else:
 		close_dialog()
+
+func open_dialog():
+	if current_tree:
+		hint.show()
+	else:
+		hint.hide()
+	anim_player.play("open")
 	
 func close_dialog():
 	if current_dialog and existed_dialog_tree:

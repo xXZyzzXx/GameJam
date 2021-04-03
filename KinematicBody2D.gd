@@ -29,6 +29,9 @@ func move_to_object(object):
 		target = object.rect_position
 
 func _physics_process(_delta):
+	if Gui.dialogbox.current_tree:
+		target = null
+		return
 	if target:
 		if target.x < position.x:
 			$Sprite.flip_h = true
@@ -45,15 +48,14 @@ func _physics_process(_delta):
 			target = null
 			if moving_to_object:
 				_on_reached_to_object()
-	else:
-		return
 
 func _on_reached_to_object():
-	if moving_to_object.object_dialog:
-		if Data.dialogs.get(moving_to_object.object_dialog):
-			Gui.dialogbox.show_dialog_tree(moving_to_object.object_dialog)
-		else:
-			Gui.dialogbox.show_dialog(moving_to_object.object_dialog, moving_to_object.image)
+	if "object_dialog" in moving_to_object:
+		if moving_to_object.object_dialog:
+			if Data.dialogs.get(moving_to_object.object_dialog):
+				Gui.dialogbox.show_dialog_tree(moving_to_object.object_dialog)
+			else:
+				Gui.dialogbox.show_dialog(moving_to_object.object_dialog, moving_to_object.image)
 	if "second_object_dialog" in moving_to_object:
 		moving_to_object.object_dialog = moving_to_object.second_object_dialog
 	moving_to_object = false

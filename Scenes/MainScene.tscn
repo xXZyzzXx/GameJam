@@ -37,7 +37,7 @@ func _ready():
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( 12.1902, 34.5986, 46.6417, 24.6879, 81.0931, 29.4073, 82.9808, 35.5425, 85.8124, 39.7899, 85.8124, 48.7567, 83.9247, 56.3077, 71.6543, 144.56, 62.2156, 151.639, 46.6417, 153.055, 35.3152, 150.695, 27.2922, 145.504, 22.1009, 138.897, 15.9657, 40.7338, 12.1902, 40.2619 )
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=3]
 script/source = "extends TextureButton
 
 
@@ -53,7 +53,7 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=4]
 script/source = "extends TextureButton
 
 
@@ -74,7 +74,7 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=5]
 script/source = "extends Button
 
 
@@ -95,7 +95,7 @@ func _pressed():
 	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=6]
 script/source = "extends Button
 
 
@@ -116,7 +116,7 @@ func _pressed():
 	Gui.dialogbox.show_dialog(self.text)
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=7]
 script/source = "extends Button
 
 
@@ -137,7 +137,7 @@ func _pressed():
 	Gui.dialogbox.show_dialog_tree(\"greeting\")
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=8]
 script/source = "extends Button
 
 
@@ -159,6 +159,9 @@ func _pressed():
 "
 
 [node name="MainScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -180,6 +183,22 @@ margin_bottom = 720.0
 texture = ExtResource( 3 )
 region_rect = Rect2( 1.668, -0.481, 1278.13, 810 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left_wall" type="TextureButton" parent="."]
+margin_right = 128.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right_wall" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -128.0
+margin_bottom = 720.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -206,7 +225,7 @@ margin_right = 1028.0
 margin_bottom = 522.0
 texture_normal = ExtResource( 8 )
 expand = true
-script = SubResource( 7 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -218,7 +237,7 @@ margin_right = 1277.01
 margin_bottom = 510.205
 texture_normal = ExtResource( 9 )
 expand = true
-script = SubResource( 8 )
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -268,7 +287,7 @@ __meta__ = {
 [node name="Button" type="Button" parent="GridContainer"]
 margin_right = 135.0
 margin_bottom = 20.0
-script = SubResource( 3 )
+script = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -278,7 +297,7 @@ margin_top = 24.0
 margin_right = 135.0
 margin_bottom = 44.0
 text = "test oneshot dialog"
-script = SubResource( 4 )
+script = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -288,7 +307,7 @@ margin_top = 48.0
 margin_right = 135.0
 margin_bottom = 68.0
 text = "dialog tree"
-script = SubResource( 5 )
+script = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -298,7 +317,9 @@ margin_top = 72.0
 margin_right = 135.0
 margin_bottom = 92.0
 text = "set skippable text"
-script = SubResource( 6 )
+script = SubResource( 8 )
+[connection signal="pressed" from="Left_wall" to="." method="_on_Left_wall_pressed"]
+[connection signal="pressed" from="Right_wall" to="." method="_on_Right_wall_pressed"]
 [connection signal="pressed" from="Trash" to="." method="_on_Trash_pressed"]
 [connection signal="pressed" from="Lift_door" to="." method="_on_Lift_door_pressed"]
 [connection signal="pressed" from="Sea_window" to="." method="_on_Sea_window_pressed"]
