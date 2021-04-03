@@ -23,7 +23,7 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/BarScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/MainScene.tscn\")
 "
 
 [node name="OfficeScene" type="Control"]

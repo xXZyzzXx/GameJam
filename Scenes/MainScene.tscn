@@ -1,12 +1,80 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=2]
 [ext_resource path="res://Data/Assets/Locations/main.png" type="Texture" id=3]
 [ext_resource path="res://Data/Assets/light.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/MainScene.gd" type="Script" id=5]
+[ext_resource path="res://Data/Assets/Items/trash.png" type="Texture" id=6]
+[ext_resource path="res://Data/Assets/image0.png" type="Texture" id=7]
+[ext_resource path="res://Data/Assets/Items/lift_door.png" type="Texture" id=8]
+[ext_resource path="res://Data/Assets/Items/sea_window.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=1]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"Что тут можно надеяться найти?\"
+var image = load(\"res://Data/Assets/Items/trash.png\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var gear_image = Image.new()
+	gear_image.load(\"res://Data/Assets/Items/trash.png\")
+	var gear_mask = BitMap.new()
+	gear_mask.create_from_image_alpha(gear_image)
+	texture_click_mask = gear_mask
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 12.1902, 34.5986, 46.6417, 24.6879, 81.0931, 29.4073, 82.9808, 35.5425, 85.8124, 39.7899, 85.8124, 48.7567, 83.9247, 56.3077, 71.6543, 144.56, 62.2156, 151.639, 46.6417, 153.055, 35.3152, 150.695, 27.2922, 145.504, 22.1009, 138.897, 15.9657, 40.7338, 12.1902, 40.2619 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends TextureButton
+
+
+
+var object_dialog = \"Дверь обычная\"
+var image = load(\"res://Data/Assets/Items/lift_door.png\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"Окно с видом на океан\"
+var image = load(\"res://Data/Assets/Items/sea_window.png\")
+var second_object_dialog = \"Вокруг одни рыбы..\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=5]
 script/source = "extends Button
 
 
@@ -27,7 +95,7 @@ func _pressed():
 	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
 "
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=6]
 script/source = "extends Button
 
 
@@ -48,7 +116,7 @@ func _pressed():
 	Gui.dialogbox.show_dialog(self.text)
 "
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=7]
 script/source = "extends Button
 
 
@@ -69,7 +137,7 @@ func _pressed():
 	Gui.dialogbox.show_dialog_tree(\"greeting\")
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=8]
 script/source = "extends Button
 
 
@@ -87,16 +155,29 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	Gui.dialogbox.show_dialog(self.text, 0)
+	Gui.dialogbox.show_dialog(self.text, null, 0)
 "
 
 [node name="MainScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bg" type="NinePatchRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+texture = ExtResource( 7 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg2" type="NinePatchRect" parent="."]
+visible = false
 margin_right = 1280.0
 margin_bottom = 720.0
 texture = ExtResource( 3 )
@@ -106,23 +187,99 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Left_wall" type="TextureButton" parent="."]
+margin_right = 128.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right_wall" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -128.0
+margin_bottom = 720.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trash" type="TextureButton" parent="."]
+margin_left = 319.881
+margin_top = 434.56
+margin_right = 416.881
+margin_bottom = 595.56
+texture_normal = ExtResource( 6 )
+expand = true
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Trash"]
+occluder = SubResource( 2 )
+
+[node name="Lift_door" type="TextureButton" parent="."]
+margin_left = 722.0
+margin_top = 135.0
+margin_right = 1028.0
+margin_bottom = 522.0
+texture_normal = ExtResource( 8 )
+expand = true
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sea_window" type="TextureButton" parent="."]
+margin_left = 1118.01
+margin_top = 104.205
+margin_right = 1277.01
+margin_bottom = 510.205
+texture_normal = ExtResource( 9 )
+expand = true
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 600.012, 516.224 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 948.905, -56.6681 )
-scale = Vector2( 0.61277, 0.431865 )
+position = Vector2( 945.568, -16.6229 )
+scale = Vector2( 0.593217, 0.431865 )
 texture = ExtResource( 4 )
+color = Color( 0.52549, 0.933333, 0.588235, 1 )
 energy = 1.75
 mode = 2
 shadow_enabled = true
 shadow_color = Color( 0.0313726, 0.0313726, 0.0313726, 0 )
 
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 364.245, -21.9623 )
+scale = Vector2( 0.59452, 0.431865 )
+texture = ExtResource( 4 )
+color = Color( 0.94902, 0.87451, 0.588235, 1 )
+energy = 1.75
+mode = 2
+shadow_enabled = true
+shadow_color = Color( 0.0313726, 0.0313726, 0.0313726, 0 )
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 1180.24, 311.038 )
+scale = Vector2( 0.340613, 0.551006 )
+texture = ExtResource( 4 )
+color = Color( 0.235294, 0.270588, 0.439216, 1 )
+energy = 2.37
+mode = 2
+shadow_enabled = true
+shadow_color = Color( 0.0313726, 0.0313726, 0.0313726, 0 )
+
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_left = 990.538
-margin_top = 103.181
-margin_right = 1125.54
-margin_bottom = 174.181
+margin_left = 45.3704
+margin_top = 59.4544
+margin_right = 180.372
+margin_bottom = 151.454
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -130,7 +287,7 @@ __meta__ = {
 [node name="Button" type="Button" parent="GridContainer"]
 margin_right = 135.0
 margin_bottom = 20.0
-script = SubResource( 1 )
+script = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -140,7 +297,7 @@ margin_top = 24.0
 margin_right = 135.0
 margin_bottom = 44.0
 text = "test oneshot dialog"
-script = SubResource( 2 )
+script = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -150,7 +307,7 @@ margin_top = 48.0
 margin_right = 135.0
 margin_bottom = 68.0
 text = "dialog tree"
-script = SubResource( 3 )
+script = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -160,4 +317,9 @@ margin_top = 72.0
 margin_right = 135.0
 margin_bottom = 92.0
 text = "set skippable text"
-script = SubResource( 4 )
+script = SubResource( 8 )
+[connection signal="pressed" from="Left_wall" to="." method="_on_Left_wall_pressed"]
+[connection signal="pressed" from="Right_wall" to="." method="_on_Right_wall_pressed"]
+[connection signal="pressed" from="Trash" to="." method="_on_Trash_pressed"]
+[connection signal="pressed" from="Lift_door" to="." method="_on_Lift_door_pressed"]
+[connection signal="pressed" from="Sea_window" to="." method="_on_Sea_window_pressed"]
