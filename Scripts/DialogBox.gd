@@ -20,13 +20,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func _gui_input(event):
-	if event.is_action_pressed('left_click'):
-		Gui._clear_selected_item()
-		if current_tree:
-			_get_next_dialog_from_tree()
-		if current_dialog:
-			close_dialog()
 			
 func _input(event):
 	if event.is_action_pressed('skip'):
@@ -36,17 +29,28 @@ func _input(event):
 			_get_next_dialog_from_tree()
 
 		
-func show_dialog(text, time=1):
-	if current_tree:
+func show_dialog(text, image=null, time=1.5):
+	if current_tree or current_dialog == text:
 		return
 	if time == 0:
 		close_by_skip = true
 	else:
 		close_timer.wait_time = time
 		close_timer.start()
-	current_dialog = text
-	label.text = str(text)
-	dialog_icon.texture = default_icon
+		
+	var dialog_list = Data.dialogs.get(text)
+	if dialog_list:
+		var phrase = dialog_list.duplicate(true)[0]
+		current_dialog = text
+		label.text = str(phrase.get("text"))
+		dialog_icon.texture = (Data.icons.get(phrase.get("speaker"))).get("texture")
+	else:
+		current_dialog = text
+		label.text = str(text)
+		if image:
+			dialog_icon.texture = image
+		else:
+			dialog_icon.texture = default_icon
 	anim_player.play("open")
 		
 func show_dialog_tree(dialog):
@@ -61,7 +65,7 @@ func _get_next_dialog_from_tree():
 	if len(existed_dialog_tree) > 0:
 		var phrase = existed_dialog_tree[0]
 		label.text = str(phrase.get("text"))
-		dialog_icon.texture = (Data.characters.get(phrase.get("speaker"))).get("texture")
+		dialog_icon.texture = (Data.icons.get(phrase.get("speaker"))).get("texture")
 		existed_dialog_tree.erase(phrase)
 	else:
 		close_dialog()
@@ -75,5 +79,13 @@ func close_dialog():
 	anim_player.play("close")
 	
 func _timeout():
+	if current_dialog:
+		close_dialog()
+
+
+func _on_Bg_pressed():
+	Gui._clear_selected_item()
+	if current_tree:
+		_get_next_dialog_from_tree()
 	if current_dialog:
 		close_dialog()

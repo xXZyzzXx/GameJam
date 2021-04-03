@@ -2,10 +2,11 @@ extends KinematicBody2D
 
 onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
-export (int) var speed = 300
+export (int) var speed = 250
 
 var target = Vector2()
 var velocity = Vector2()
+var moving_to_object = false
 
 
 func _ready():
@@ -17,8 +18,13 @@ func _unhandled_input(event):
 		#print(target)
 
 func move_to_object(object):
+	moving_to_object = object
+	#print(position.x, " ", object.rect_position.x, " ", object.rect_position.x + object.rect_size.x)
 	if position.x > object.rect_position.x:
-		target = object.rect_position + object.rect_size
+		if position.x < object.rect_position.x + object.rect_size.x:
+			_on_reached_to_object()
+		else:
+			target = object.rect_position + object.rect_size
 	else:
 		target = object.rect_position
 
@@ -30,15 +36,28 @@ func _physics_process(_delta):
 			$Sprite.flip_h = false
 		if abs(target.x - position.x) > 5:
 			state_machine.travel("walk")
-			velocity = (target - position).normalized() * speed
+			#velocity = (target - position).normalized() * speed
+			#velocity = position.direction_to(target) * speed
+			velocity = (Vector2(target.x, 0) - Vector2(position.x, 0)).normalized() * speed
 			velocity = move_and_slide(Vector2(velocity.x, 0))
 		else:
 			state_machine.travel("idle")
 			target = null
+			if moving_to_object:
+				_on_reached_to_object()
 	else:
 		return
 
-
+func _on_reached_to_object():
+	if moving_to_object.object_dialog:
+		if Data.dialogs.get(moving_to_object.object_dialog):
+			Gui.dialogbox.show_dialog_tree(moving_to_object.object_dialog)
+		else:
+			Gui.dialogbox.show_dialog(moving_to_object.object_dialog, moving_to_object.image)
+	if "second_object_dialog" in moving_to_object:
+		moving_to_object.object_dialog = moving_to_object.second_object_dialog
+	moving_to_object = false
+	
 
 # Необходимо сделать передвижение только по оси х. 
 # Определить, вправо или влево повернутуть персонажа и сделать $Sprite.flip_h 
