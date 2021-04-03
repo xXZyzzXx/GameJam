@@ -6,7 +6,7 @@ export (int) var speed = 250
 
 var target = Vector2()
 var velocity = Vector2()
-var moving_to_object = false
+var object_to_move = null
 
 
 func _ready():
@@ -15,11 +15,11 @@ func _ready():
 func _unhandled_input(event):
 	if event.is_action_pressed('left_click'):
 		target = get_global_mouse_position()
-		moving_to_object = false
+		object_to_move = null
 		#print(target)
 
 func move_to_object(object):
-	moving_to_object = object
+	object_to_move = object
 	#print(position.x, " ", object.rect_position.x, " ", object.rect_position.x + object.rect_size.x)
 	if position.x > object.rect_position.x:
 		if position.x < object.rect_position.x + object.rect_size.x:
@@ -47,19 +47,26 @@ func _physics_process(_delta):
 		else:
 			state_machine.travel("idle")
 			target = null
-			if moving_to_object:
+			if object_to_move:
 				_on_reached_to_object()
 
 func _on_reached_to_object():
-	if "object_dialog" in moving_to_object:
-		if moving_to_object.object_dialog:
-			if Data.dialogs.get(moving_to_object.object_dialog):
-				Gui.dialogbox.show_dialog_tree(moving_to_object.object_dialog)
+	if GameData.selected_item:
+		if "iterable" in object_to_move:
+			print("able to iteract")
+		print("with item")
+	if "object_dialog" in object_to_move:
+		if object_to_move.object_dialog:
+			if Data.dialogs.get(object_to_move.object_dialog):
+				Gui.dialogbox.show_dialog_tree(object_to_move.object_dialog)
 			else:
-				Gui.dialogbox.show_dialog(moving_to_object.object_dialog, moving_to_object.texture_normal)
-	if "second_object_dialog" in moving_to_object:
-		moving_to_object.object_dialog = moving_to_object.second_object_dialog
-	moving_to_object = false
+				if "player_minds" in object_to_move:
+					Gui.dialogbox.show_dialog(object_to_move.object_dialog, Data.icons.get("player").get("texture"))
+				else:
+					Gui.dialogbox.show_dialog(object_to_move.object_dialog, object_to_move.texture_normal)
+	if "second_object_dialog" in object_to_move:
+		object_to_move.object_dialog = object_to_move.second_object_dialog
+	object_to_move = false
 	
 
 # Необходимо сделать передвижение только по оси х. 

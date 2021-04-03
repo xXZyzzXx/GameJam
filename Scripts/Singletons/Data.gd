@@ -2,7 +2,7 @@ extends Node
 
 
 var icons = {
-	"player": {"texture": load("res://Data/Icons/gear.png")},
+	"player": {"texture": load("res://Data/Assets/player_icon.png")},
 	"enemy": {"texture": load("res://Data/Icons/tech.png")},
 	"something": {"texture": load("res://Data/Assets/player.png")},
 	"sea_window": {"texture": load("res://Data/Assets/Items/sea_window.png")},

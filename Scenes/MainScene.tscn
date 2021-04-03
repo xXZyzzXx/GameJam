@@ -18,14 +18,17 @@ script/source = "extends TextureButton
 # var a = 2
 # var b = \"text\"
 var object_dialog = \"Что тут можно надеяться найти?\"
+var player_minds = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var image = Image.new()
-	image.load(\"res://Data/Assets/Items/trash.png\")
-	var mask = BitMap.new()
-	mask.create_from_image_alpha(image)
-	texture_click_mask = mask
+	pass
+	#if OS.window_size == Vector2(1280, 720):
+		#var image = Image.new()
+		#image.load(\"res://Data/Assets/Items/trash.png\")
+		#var mask = BitMap.new()
+		#mask.create_from_image_alpha(image)
+		#texture_click_mask = mask
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +45,7 @@ script/source = "extends TextureButton
 
 
 var object_dialog = \"Дверь обычная\"
+var iterable
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -63,11 +67,13 @@ var second_object_dialog = \"Вокруг одни рыбы..\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var image = Image.new()
-	image.load(\"res://Data/Assets/Items/sea_window.png\")
-	var mask = BitMap.new()
-	mask.create_from_image_alpha(image)
-	texture_click_mask = mask
+	pass
+	#if OS.window_size == Vector2(1280, 720):
+		#var image = Image.new()
+		#image.load(\"res://Data/Assets/Items/sea_window.png\")
+		#var mask = BitMap.new()
+		#mask.create_from_image_alpha(image)
+		#texture_click_mask = mask
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
