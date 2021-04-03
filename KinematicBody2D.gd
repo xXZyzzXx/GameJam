@@ -55,7 +55,7 @@ func _on_reached_to_object():
 			if Data.dialogs.get(moving_to_object.object_dialog):
 				Gui.dialogbox.show_dialog_tree(moving_to_object.object_dialog)
 			else:
-				Gui.dialogbox.show_dialog(moving_to_object.object_dialog, moving_to_object.image)
+				Gui.dialogbox.show_dialog(moving_to_object.object_dialog, moving_to_object.texture_normal)
 	if "second_object_dialog" in moving_to_object:
 		moving_to_object.object_dialog = moving_to_object.second_object_dialog
 	moving_to_object = false

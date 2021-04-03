@@ -11,6 +11,7 @@ var close_by_skip = false
 var current_tree = null 
 var existed_dialog_tree = null  # Оставшиеся диалоги
 var current_dialog = null
+var open_new_dialog = true
 # Передать список слов в диалог с скипанием и ван шоты, которые пропадают сами
 
 # Called when the node enters the scene tree for the first time.
@@ -34,6 +35,8 @@ func _input(event):
 func show_dialog(text, image=null, time=1.5):
 	if current_tree or current_dialog == text:
 		return
+	if current_dialog:
+		open_new_dialog = false
 	if time == 0:
 		close_by_skip = true
 	else:
@@ -53,7 +56,8 @@ func show_dialog(text, image=null, time=1.5):
 			dialog_icon.texture = image
 		else:
 			dialog_icon.texture = default_icon
-	open_dialog()
+	if open_new_dialog:
+		open_dialog()
 		
 func show_dialog_tree(dialog):
 	var dialog_list = Data.dialogs.get(dialog)
@@ -80,11 +84,12 @@ func open_dialog():
 	anim_player.play("open")
 	
 func close_dialog():
-	if current_dialog and existed_dialog_tree:
-		return  # На всякий случай заглушка от произвольного закрытия
+	#if current_dialog and existed_dialog_tree:
+		#return  # На всякий случай заглушка от произвольного закрытия
 	current_dialog = null
 	current_tree = null 
 	existed_dialog_tree = null
+	open_new_dialog = true
 	anim_player.play("close")
 	
 func _timeout():

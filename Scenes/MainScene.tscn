@@ -18,7 +18,6 @@ script/source = "extends TextureButton
 # var a = 2
 # var b = \"text\"
 var object_dialog = \"Что тут можно надеяться найти?\"
-var image = load(\"res://Data/Assets/Items/trash.png\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,7 +42,6 @@ script/source = "extends TextureButton
 
 
 var object_dialog = \"Дверь обычная\"
-var image = load(\"res://Data/Assets/Items/lift_door.png\")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -61,7 +59,6 @@ script/source = "extends TextureButton
 # var a = 2
 # var b = \"text\"
 var object_dialog = \"Окно с видом на океан\"
-var image = load(\"res://Data/Assets/Items/sea_window.png\")
 var second_object_dialog = \"Вокруг одни рыбы..\"
 
 # Called when the node enters the scene tree for the first time.
