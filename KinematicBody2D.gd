@@ -1,20 +1,26 @@
 extends KinematicBody2D
 
+onready var state_machine = get_node("AnimationTree").get("parameters/playback")
 
 export (int) var speed = 300
 
 var target = Vector2()
 var velocity = Vector2()
-var state_machine
+
 
 func _ready():
-	state_machine = get_node("AnimationTree").get("parameters/playback")
 	state_machine.start("idle")
 
 func _unhandled_input(event):
 	if event.is_action_pressed('left_click'):
 		target = get_global_mouse_position()
-		print(target)
+		#print(target)
+
+func move_to_object(object):
+	if position.x > object.rect_position.x:
+		target = object.rect_position + object.rect_size
+	else:
+		target = object.rect_position
 
 func _physics_process(_delta):
 	if target:
@@ -28,6 +34,7 @@ func _physics_process(_delta):
 			velocity = move_and_slide(Vector2(velocity.x, 0))
 		else:
 			state_machine.travel("idle")
+			target = null
 	else:
 		return
 

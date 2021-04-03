@@ -25,15 +25,16 @@ func _gui_input(event):
 		Gui._clear_selected_item()
 		if current_tree:
 			_get_next_dialog_from_tree()
+		if current_dialog:
+			close_dialog()
 			
 func _input(event):
 	if event.is_action_pressed('skip'):
-		print('skip')
 		if current_dialog:
 			close_dialog()
 		if current_tree:
 			_get_next_dialog_from_tree()
-		
+
 		
 func show_dialog(text, time=1):
 	if current_tree:
