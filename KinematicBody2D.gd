@@ -20,8 +20,6 @@ func _physics_process(_delta):
 	if target:
 		if target.x < position.x:
 			$Sprite.flip_h = true
-			velocity.x = +speed
-			
 		elif target.x > position.x:
 			$Sprite.flip_h = false
 		if abs(target.x - position.x) > 5:

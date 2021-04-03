@@ -5,6 +5,7 @@ onready var inv_btn = get_node("Control/InventoryBtn")
 onready var inventory_player = get_node("Control/Inventory/AnimationPlayer")
 onready var gui_timer = get_node("Control/Timer")
 onready var inventory = get_node("Control/Inventory")
+onready var dialogbox = get_node("Control/DialogBox")
 
 onready var selected_item_from_slot = get_node("Control/SelectedItem")
 var current_mouse_pos

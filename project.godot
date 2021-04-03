@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 GameData="*res://Scripts/Singletons/GameData.gd"
 SceneChanger="*res://Scenes/SceneChanger.tscn"
 Gui="*res://Scenes/GUI.tscn"
+Data="*res://Scripts/Singletons/Data.gd"
 
 [display]
 
