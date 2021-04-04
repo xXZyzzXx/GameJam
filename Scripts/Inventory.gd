@@ -14,6 +14,9 @@ onready var slots = [slot1, slot2, slot3, slot4, slot5, slot6]
 
 
 func _ready():
+	update_slots()
+	
+func update_slots():
 	var i = 0
 	for item in GameData.inventory_slots:
 		var slot_content = GameData.inventory_slots.get(item)

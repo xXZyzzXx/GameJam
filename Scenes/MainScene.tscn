@@ -86,7 +86,7 @@ script/source = "extends TextureButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-var object_dialog = \"Отсюда я приехала\"
+var object_dialog = \"lift\"
 var player_minds = true
 
 # Called when the node enters the scene tree for the first time.
@@ -286,6 +286,7 @@ __meta__ = {
 }
 
 [node name="Trash" type="TextureButton" parent="."]
+visible = false
 margin_left = 184.0
 margin_top = 392.0
 margin_right = 281.0
@@ -392,6 +393,7 @@ shadow_enabled = true
 shadow_color = Color( 0.0313726, 0.0313726, 0.0313726, 0 )
 
 [node name="GridContainer" type="GridContainer" parent="."]
+visible = false
 margin_left = 544.0
 margin_top = 40.0
 margin_right = 679.002

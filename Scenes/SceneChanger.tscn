@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/SceneChanger.gd" type="Script" id=1]
+[ext_resource path="res://Data/Music/back.wav" type="AudioStream" id=2]
+[ext_resource path="res://Data/Music/jg-032316-sfx-wood-door-closing-1.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade"
@@ -17,6 +19,21 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0.894118 ), Color( 0, 0, 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Close:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="SceneChanger" type="CanvasLayer"]
 script = ExtResource( 1 )
 
@@ -29,7 +46,7 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
-modulate = Color( 0, 0, 0, 0.447059 )
+modulate = Color( 0, 0, 0, 0.894118 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -40,4 +57,15 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade = SubResource( 1 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/close = SubResource( 2 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="finished" from="Sound" to="." method="_on_AudioStreamPlayer_finished"]

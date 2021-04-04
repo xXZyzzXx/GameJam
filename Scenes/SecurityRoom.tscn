@@ -85,7 +85,7 @@ script/source = "extends TextureButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-var object_dialog = \"trash2\"
+var object_dialog = \"Мусорный бак\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -104,7 +104,7 @@ script/source = "extends TextureButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-var object_dialog = \"trash1\"
+var object_dialog = \"Мусорный бак\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -123,7 +123,8 @@ script/source = "extends TextureButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-var object_dialog = \"pc\"
+# var object_dialog = \"pc\"
+var item = \"res://Data/Assets/Items/key_flash_drive1.png\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -180,7 +181,7 @@ script/source = "extends TextureButton
 # Declare member variables here. Examples:
 # var a = 2
 # var b = \"text\"
-var object_dialog = \"ventil\"
+var object_dialog = \"Обычная вентиляция\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -208,6 +209,7 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="."]
+visible = false
 margin_left = 1099.2
 margin_top = 117.308
 margin_right = 1228.2

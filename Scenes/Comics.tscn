@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var comics = [load(\"res://Data/Assets/Comics/comics_1.png\"), load(\"res://Data/Assets/Comics/comics_2.png\"),
+load(\"res://Data/Assets/Comics/comics_3.png\"),load(\"res://Data/Assets/Comics/comics_4.png\"),
+load(\"res://Data/Assets/Comics/comics_5.png\"),]
+var current_comics = 0
+onready var bg = get_node(\"bg\")
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	bg.texture_normal = comics[current_comics]
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_NinePatchRect_pressed():
+	if current_comics < len(comics):
+		bg.texture_normal = comics[current_comics]
+		current_comics +=1
+	else:
+		SceneChanger.goto_scene(\"res://Scenes/MainScene.tscn\")
+		Gui.get_node(\"Control\").show()
+"
+
+[node name="Comics" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bg" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="bg" to="." method="_on_NinePatchRect_pressed"]

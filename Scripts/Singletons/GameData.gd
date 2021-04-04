@@ -19,8 +19,8 @@ var inventory_slots = {
 	"2": null,
 	"3": null,
 	"4": null,
-	"5": "Gear",
-	"6": "Tech",
+	"5": null,
+	"6": null,
 }
 
 func _ready():

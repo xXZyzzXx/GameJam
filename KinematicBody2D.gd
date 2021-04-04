@@ -58,6 +58,13 @@ func _on_reached_to_object():
 	if "scene" in object_to_move:
 		SceneChanger.goto_scene(object_to_move.scene)
 		return
+	if "item" in object_to_move:
+		GameData.all_items[object_to_move.item] = {"texture": load(object_to_move.item)}
+		GameData.inventory_slots["6"] = object_to_move.item
+		print(GameData.all_items, " ", GameData.inventory_slots)
+		Gui.inventory.update_slots()
+		print(Gui.inventory.slots)
+		print('item')
 	elif "object_dialog" in object_to_move:
 		if object_to_move.object_dialog:
 			if Data.dialogs.get(object_to_move.object_dialog):

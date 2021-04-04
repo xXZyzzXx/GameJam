@@ -28,3 +28,24 @@ func _on_game_saved():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "fade-in":
 		anim_player.play("fade-out")
+
+
+func _on_Exit_mouse_entered():
+	$Sound.play()
+
+
+func _on_Creits_mouse_entered():
+	$Sound.play()
+
+
+func _on_Save_mouse_entered():
+	$Sound.play()
+
+
+func _on_Start_mouse_entered():
+	$Sound.play()
+
+
+func _on_Creits_pressed():
+	notification_label.text = "Не успели.."
+	anim_player.play("fade-in")

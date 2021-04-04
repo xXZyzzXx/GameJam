@@ -48,6 +48,7 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 
 [node name="Control" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -74,6 +75,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Control/InventoryBtn"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0

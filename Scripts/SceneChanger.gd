@@ -5,6 +5,7 @@ var followingScene = ""
 var currentScene = ""
 
 onready var player = $"/root/SceneChanger/AnimationPlayer"
+onready var player2 = $"/root/SceneChanger/AnimationPlayer2"
 onready var gui = $"/root/Gui"
 
 func _ready():
@@ -32,6 +33,9 @@ func goto_scene(path):
 	followingScene = path
 	player.playback_speed = 2
 	player.play_backwards()
+	if GameData.first_launch == false:
+		player2.play("close")
+	
 
 func _deferred_goto_scene(path):
 	# It is now safe to remove the current scene
@@ -57,3 +61,7 @@ func _on_AnimationPlayer_animation_finished(_anim_name):
 	if followingScene != "":
 		call_deferred("_deferred_goto_scene", followingScene)
 	followingScene = ""
+
+
+func _on_AudioStreamPlayer_finished():
+	$Sound.play()
