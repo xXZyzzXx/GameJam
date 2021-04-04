@@ -1,8 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Data/Assets/Locations/hall1.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
+[ext_resource path="res://Data/Assets/Locations/Hall/hall ventilation.png" type="Texture" id=4]
+[ext_resource path="res://Data/Assets/Locations/Hall/hall window.png" type="Texture" id=5]
+[ext_resource path="res://Data/Assets/Locations/Hall/hall door.png" type="Texture" id=6]
+[ext_resource path="res://Data/Assets/Locations/Hall/hall tag games2.png" type="Texture" id=7]
+[ext_resource path="res://Data/Assets/Locations/Hall/hall door to the WC.png" type="Texture" id=8]
+[ext_resource path="res://Data/Assets/Locations/Hall/hall door to the office.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -13,11 +19,46 @@ script/source = "extends Control
 # var b = \"text\"
 onready var player = get_node(\"Player\")
 
+onready var door_office = get_node(\"Door_office\")
+onready var door_wc = get_node(\"Door_wc\")
+onready var door_main = get_node(\"Door_main\")
+onready var ventil = get_node(\"Ventil\")
+onready var window = get_node(\"Window\")
+onready var tag = get_node(\"Tag_on_door\")
+
+var tag_unlock = false
+var tag_img = load(\"res://Data/Assets/Locations/Hall/hall_tag_games.png\")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player.position.x = 200
 	player.get_node(\"Sprite\").flip_h = false
+	if tag_unlock:
+		tag.texture_normal = tag_img
 	pass # Replace with function body.
+
+
+func _on_Door_office_pressed():
+	player.move_to_object(door_office)
+
+
+func _on_Door_wc_pressed():
+	player.move_to_object(door_wc)
+
+
+func _on_Door_main_pressed():
+	player.move_to_object(door_main)
+
+
+func _on_Ventil_pressed():
+	player.move_to_object(ventil)
+
+
+func _on_Window_pressed():
+	player.move_to_object(window)
+
+
+func _on_Tag_on_door_pressed():
+	player.move_to_object(tag)
 "
 
 [sub_resource type="GDScript" id=2]
@@ -83,6 +124,120 @@ func _pressed():
 	SceneChanger.goto_scene(\"res://Scenes/MainScene.tscn\")
 "
 
+[sub_resource type="GDScript" id=5]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var scene = \"res://Scenes/HeadOfficeRoom.tscn\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var scene = \"res://Scenes/WcRoom.tscn\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var scene = \"res://Scenes/MainScene.tscn\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"ventil\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=9]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"window\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=10]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"tag.. need to unlock\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
 [node name="HallRoom" type="Control"]
 script = SubResource( 1 )
 __meta__ = {
@@ -98,14 +253,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 600.012, 516.224 )
-
 [node name="Button" type="Button" parent="."]
-margin_left = 321.849
-margin_top = 160.266
-margin_right = 431.849
-margin_bottom = 208.266
+margin_left = 500.029
+margin_top = 132.648
+margin_right = 620.029
+margin_bottom = 180.648
 text = "head office room"
 script = SubResource( 2 )
 __meta__ = {
@@ -113,10 +265,10 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="."]
-margin_left = 833.113
-margin_top = 155.221
-margin_right = 943.113
-margin_bottom = 203.221
+margin_left = 843.804
+margin_top = 90.1854
+margin_right = 953.804
+margin_bottom = 138.185
 text = "wc"
 script = SubResource( 3 )
 __meta__ = {
@@ -124,12 +276,93 @@ __meta__ = {
 }
 
 [node name="Button3" type="Button" parent="."]
-margin_left = 61.171
-margin_top = 209.038
-margin_right = 171.171
-margin_bottom = 257.038
+margin_left = 24.3418
+margin_top = 138.983
+margin_right = 153.342
+margin_bottom = 186.983
 text = "back to priemnaya"
 script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Door_office" type="TextureButton" parent="."]
+margin_left = 277.0
+margin_top = 177.0
+margin_right = 483.0
+margin_bottom = 525.0
+texture_normal = ExtResource( 9 )
+expand = true
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Door_wc" type="TextureButton" parent="."]
+margin_left = 773.0
+margin_top = 174.0
+margin_right = 978.0
+margin_bottom = 524.0
+texture_normal = ExtResource( 8 )
+expand = true
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Door_main" type="TextureButton" parent="."]
+margin_left = 11.0
+margin_top = 214.0
+margin_right = 171.0
+margin_bottom = 668.0
+texture_normal = ExtResource( 6 )
+expand = true
+script = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ventil" type="TextureButton" parent="."]
+margin_left = 240.0
+margin_top = 51.0
+margin_right = 439.0
+margin_bottom = 164.0
+texture_normal = ExtResource( 4 )
+expand = true
+script = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Window" type="TextureButton" parent="."]
+margin_left = 1119.0
+margin_top = 103.0
+margin_right = 1277.0
+margin_bottom = 509.0
+texture_normal = ExtResource( 5 )
+expand = true
+script = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tag_on_door" type="TextureButton" parent="."]
+margin_left = 317.0
+margin_top = 301.0
+margin_right = 443.0
+margin_bottom = 365.0
+texture_normal = ExtResource( 7 )
+expand = true
+script = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 600.012, 516.224 )
+[connection signal="pressed" from="Door_office" to="." method="_on_Door_office_pressed"]
+[connection signal="pressed" from="Door_wc" to="." method="_on_Door_wc_pressed"]
+[connection signal="pressed" from="Door_main" to="." method="_on_Door_main_pressed"]
+[connection signal="pressed" from="Ventil" to="." method="_on_Ventil_pressed"]
+[connection signal="pressed" from="Window" to="." method="_on_Window_pressed"]
+[connection signal="pressed" from="Tag_on_door" to="." method="_on_Tag_on_door_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Data/Assets/Locations/Security/komnata_ohrany.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Data/Assets/Locations/Security/ohrana_trash.png" type="Texture" id=6]
 [ext_resource path="res://Data/Assets/Locations/Security/ohrana_dver.png" type="Texture" id=7]
 [ext_resource path="res://Data/Assets/Locations/Security/ohrana-klava.png" type="Texture" id=8]
+[ext_resource path="res://Data/Assets/Locations/Security/ohrana_pk.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -77,6 +78,120 @@ func _pressed():
 	SceneChanger.goto_scene(\"res://Scenes/MainScene.tscn\")
 "
 
+[sub_resource type="GDScript" id=3]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"trash2\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"trash1\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"pc\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"keyboard\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var scene = \"res://Scenes/MainScene.tscn\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"ventil\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
 [node name="SecurityRoom" type="Control"]
 script = SubResource( 1 )
 __meta__ = {
@@ -92,9 +207,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 639.968, 516.224 )
-
 [node name="Button" type="Button" parent="."]
 margin_left = 1099.2
 margin_top = 117.308
@@ -107,68 +219,79 @@ __meta__ = {
 }
 
 [node name="Trash2" type="TextureButton" parent="."]
-margin_left = 304.056
-margin_top = 470.933
-margin_right = 374.056
-margin_bottom = 544.933
+margin_left = 290.0
+margin_top = 445.0
+margin_right = 371.0
+margin_bottom = 572.0
 texture_normal = ExtResource( 5 )
 expand = true
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Trash1" type="TextureButton" parent="."]
-margin_left = 224.86
-margin_top = 520.43
-margin_right = 264.86
-margin_bottom = 560.43
+margin_left = 219.116
+margin_top = 515.0
+margin_right = 278.116
+margin_bottom = 561.0
 texture_normal = ExtResource( 6 )
 expand = true
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Pc" type="TextureButton" parent="."]
-margin_left = 438.0
-margin_top = 395.0
-margin_right = 652.0
-margin_bottom = 435.0
-texture_normal = ExtResource( 8 )
+margin_left = 697.0
+margin_top = 415.0
+margin_right = 786.0
+margin_bottom = 584.0
+texture_normal = ExtResource( 9 )
 expand = true
+script = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="KeyBoard" type="TextureButton" parent="."]
-margin_left = 281.428
-margin_top = 446.891
-margin_right = 321.428
-margin_bottom = 486.891
+margin_left = 406.0
+margin_top = 390.0
+margin_right = 673.0
+margin_bottom = 420.0
+texture_normal = ExtResource( 8 )
+expand = true
+script = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Door" type="TextureButton" parent="."]
-margin_left = 833.0
+margin_left = 829.0
 margin_top = 175.0
 margin_right = 1033.0
-margin_bottom = 517.0
+margin_bottom = 524.0
 texture_normal = ExtResource( 7 )
 expand = true
+script = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ventil" type="TextureButton" parent="."]
-margin_left = 847.0
-margin_top = 55.0
-margin_right = 1034.0
-margin_bottom = 157.0
+margin_left = 841.0
+margin_top = 51.0
+margin_right = 1039.0
+margin_bottom = 163.0
 texture_normal = ExtResource( 4 )
 expand = true
+script = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 639.968, 516.224 )
 [connection signal="pressed" from="Trash2" to="." method="_on_Trash2_pressed"]
 [connection signal="pressed" from="Trash1" to="." method="_on_Trash1_pressed"]
 [connection signal="pressed" from="Pc" to="." method="_on_Pc_pressed"]
