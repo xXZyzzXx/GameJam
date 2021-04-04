@@ -1,8 +1,49 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Data/Assets/Locations/lestnica.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
+[ext_resource path="res://Data/Assets/Locations/ladder/ladder.png" type="Texture" id=4]
+[ext_resource path="res://Data/Assets/Locations/ladder/ladder door.png" type="Texture" id=5]
+[ext_resource path="res://Data/Assets/Locations/ladder/ladder ventilation.png" type="Texture" id=6]
+[ext_resource path="res://Data/Assets/Locations/ladder/ladder2.png" type="Texture" id=7]
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+onready var player = get_node(\"Player\")
+
+onready var office = get_node(\"Office\")
+onready var sklad = get_node(\"Sklad\")
+onready var ventil = get_node(\"Ventil\")
+onready var kladovaya = get_node(\"Kladovaya\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	player.position.x = 400
+	player.get_node(\"Sprite\").flip_h = false
+	pass # Replace with function body.
+
+
+func _on_Office_pressed():
+	player.move_to_object(office)
+
+
+func _on_Sklad_pressed():
+	player.move_to_object(sklad)
+
+
+func _on_Ventil_pressed():
+	player.move_to_object(ventil)
+
+
+func _on_Kladovaya_pressed():
+	player.move_to_object(kladovaya)
+"
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -67,13 +108,91 @@ func _pressed():
 	SceneChanger.goto_scene(\"res://Scenes/KladovayaRoom.tscn\")
 "
 
+[sub_resource type="GDScript" id=6]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var scene = \"res://Scenes/OfficeRoom.tscn\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var scene = \"res://Scenes/SkladRoom.tscn\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var object_dialog = \"ventil\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends TextureButton
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+var scene = \"res://Scenes/KladovayaRoom.tscn\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
 [node name="StairsRoom" type="Control"]
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bg" type="NinePatchRect" parent="."]
-margin_right = 1280.0
+margin_left = -0.219421
+margin_right = 1279.78
 margin_bottom = 720.0
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
@@ -81,14 +200,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 600.012, 516.224 )
-
 [node name="Button" type="Button" parent="."]
-margin_left = 141.897
-margin_top = 79.5403
-margin_right = 251.897
-margin_bottom = 127.54
+margin_left = 89.897
+margin_top = 265.54
+margin_right = 199.897
+margin_bottom = 313.54
 text = "back to office"
 script = SubResource( 1 )
 __meta__ = {
@@ -96,10 +212,10 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="."]
-margin_left = 1088.75
-margin_top = 116.54
-margin_right = 1198.75
-margin_bottom = 164.539
+margin_left = 1128.75
+margin_top = 31.5397
+margin_right = 1238.75
+margin_bottom = 79.5394
 text = "sklad"
 script = SubResource( 2 )
 __meta__ = {
@@ -107,12 +223,61 @@ __meta__ = {
 }
 
 [node name="Button3" type="Button" parent="."]
-margin_left = 542.163
-margin_top = 96.3582
-margin_right = 652.163
-margin_bottom = 144.358
+margin_left = 375.102
+margin_top = 115.087
+margin_right = 485.102
+margin_bottom = 163.087
 text = "kladovaya"
 script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Office" type="TextureButton" parent="."]
+margin_left = 27.0
+margin_top = 521.0
+margin_right = 332.0
+margin_bottom = 721.0
+texture_normal = ExtResource( 7 )
+expand = true
+script = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sklad" type="TextureButton" parent="."]
+margin_left = 1056.0
+margin_top = 275.0
+margin_right = 1280.0
+margin_bottom = 644.0
+texture_normal = ExtResource( 4 )
+expand = true
+script = SubResource( 7 )
+
+[node name="Ventil" type="TextureButton" parent="."]
+margin_left = 521.0
+margin_top = 28.0
+margin_right = 729.0
+margin_bottom = 140.0
+texture_normal = ExtResource( 6 )
+expand = true
+script = SubResource( 5 )
+
+[node name="Kladovaya" type="TextureButton" parent="."]
+margin_left = 514.0
+margin_top = 174.0
+margin_right = 720.0
+margin_bottom = 525.0
+texture_normal = ExtResource( 5 )
+expand = true
+script = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 600.012, 516.224 )
+[connection signal="pressed" from="Office" to="." method="_on_Office_pressed"]
+[connection signal="pressed" from="Sklad" to="." method="_on_Sklad_pressed"]
+[connection signal="pressed" from="Ventil" to="." method="_on_Ventil_pressed"]
+[connection signal="pressed" from="Kladovaya" to="." method="_on_Kladovaya_pressed"]
