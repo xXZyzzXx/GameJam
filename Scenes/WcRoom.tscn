@@ -1,8 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Data/Assets/Locations/wc.png" type="Texture" id=1]
+[ext_resource path="res://Data/Assets/Locations/tyalet.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+onready var player = get_node(\"Player\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	player.position.x = 1050
+	player.get_node(\"Sprite\").flip_h = true
+	pass # Replace with function body.
+"
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -22,10 +40,11 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/HallRoom.tscn\")
 "
 
 [node name="WcRoom" type="Control"]
+script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,10 +62,11 @@ __meta__ = {
 position = Vector2( 600.012, 516.224 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 141.897
-margin_top = 79.5403
-margin_right = 251.897
-margin_bottom = 127.54
+margin_left = 1144.24
+margin_top = 195.584
+margin_right = 1254.24
+margin_bottom = 243.584
+text = "back to hall"
 script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

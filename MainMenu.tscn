@@ -61,7 +61,7 @@ func _pressed():
 	GameData.save_data()
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=4]
 script/source = "extends TextureButton
 
 
@@ -82,8 +82,7 @@ func _pressed():
 	get_tree().quit()
 "
 
-[sub_resource type="Animation" id=4]
-resource_name = "fade-in"
+[sub_resource type="Animation" id=5]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Notification:rect_position")
@@ -98,8 +97,7 @@ tracks/0/keys = {
 "values": [ Vector2( 515, -60 ), Vector2( 515, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "fade-out"
+[sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Notification:rect_position")
@@ -224,7 +222,7 @@ texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 6 )
 expand = true
-script = SubResource( 6 )
+script = SubResource( 4 )
 
 [node name="Label" type="Label" parent="VBox/Exit"]
 anchor_right = 1.0
@@ -258,7 +256,7 @@ align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade-in = SubResource( 4 )
-anims/fade-out = SubResource( 5 )
+anims/fade-in = SubResource( 5 )
+anims/fade-out = SubResource( 6 )
 [connection signal="pressed" from="VBox/Save" to="." method="_on_game_saved"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

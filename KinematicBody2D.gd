@@ -55,7 +55,10 @@ func _on_reached_to_object():
 		if "iterable" in object_to_move:
 			print("able to iteract")
 		print("with item")
-	if "object_dialog" in object_to_move:
+	if "scene" in object_to_move:
+		SceneChanger.goto_scene(object_to_move.scene)
+		return
+	elif "object_dialog" in object_to_move:
 		if object_to_move.object_dialog:
 			if Data.dialogs.get(object_to_move.object_dialog):
 				Gui.dialogbox.show_dialog_tree(object_to_move.object_dialog)

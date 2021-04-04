@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Data/Assets/Locations/director.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -22,7 +22,28 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/HeadOfficeRoom.tscn\")
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+func _pressed():
+	SceneChanger.goto_scene(\"res://Scenes/OfficeRoom.tscn\")
 "
 
 [node name="DirectorRoom" type="Control"]
@@ -43,11 +64,23 @@ __meta__ = {
 position = Vector2( 600.012, 516.224 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 141.897
-margin_top = 79.5403
-margin_right = 251.897
-margin_bottom = 127.54
+margin_left = 81.3525
+margin_top = 146.812
+margin_right = 191.353
+margin_bottom = 194.812
+text = "back to head office"
 script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 1080.34
+margin_top = 185.493
+margin_right = 1190.34
+margin_bottom = 233.493
+text = "offive"
+script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

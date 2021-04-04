@@ -1,10 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Data/Assets/Locations/hall.png" type="Texture" id=1]
+[ext_resource path="res://Data/Assets/Locations/hall1.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
 
 [sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+onready var player = get_node(\"Player\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	player.position.x = 200
+	player.get_node(\"Sprite\").flip_h = false
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id=2]
 script/source = "extends Button
 
 
@@ -22,10 +38,53 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/HeadOfficeRoom.tscn\")
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+func _pressed():
+	SceneChanger.goto_scene(\"res://Scenes/WcRoom.tscn\")
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+func _pressed():
+	SceneChanger.goto_scene(\"res://Scenes/MainScene.tscn\")
 "
 
 [node name="HallRoom" type="Control"]
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -43,11 +102,34 @@ __meta__ = {
 position = Vector2( 600.012, 516.224 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 141.897
-margin_top = 79.5403
-margin_right = 251.897
-margin_bottom = 127.54
-script = SubResource( 1 )
+margin_left = 321.849
+margin_top = 160.266
+margin_right = 431.849
+margin_bottom = 208.266
+text = "head office room"
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 833.113
+margin_top = 155.221
+margin_right = 943.113
+margin_bottom = 203.221
+text = "wc"
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 61.171
+margin_top = 209.038
+margin_right = 171.171
+margin_bottom = 257.038
+text = "back to priemnaya"
+script = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

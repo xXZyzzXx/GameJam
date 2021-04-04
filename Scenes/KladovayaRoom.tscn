@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Data/Assets/Locations/kladovaya.png" type="Texture" id=1]
+[ext_resource path="res://Data/Assets/Locations/kladovaya2.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
 
@@ -22,7 +22,7 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/OfficeRoom.tscn\")
 "
 
 [node name="KladovayaRoom" type="Control"]
@@ -47,6 +47,7 @@ margin_left = 141.897
 margin_top = 79.5403
 margin_right = 251.897
 margin_bottom = 127.54
+text = "back to office"
 script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

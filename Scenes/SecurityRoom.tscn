@@ -1,10 +1,62 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Data/Assets/Locations/security_room.png" type="Texture" id=1]
+[ext_resource path="res://Data/Assets/Locations/Security/komnata_ohrany.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
+[ext_resource path="res://Data/Assets/Locations/Security/ventil.png" type="Texture" id=4]
+[ext_resource path="res://Data/Assets/Locations/Security/ohrana_trash2.png" type="Texture" id=5]
+[ext_resource path="res://Data/Assets/Locations/Security/ohrana_trash.png" type="Texture" id=6]
+[ext_resource path="res://Data/Assets/Locations/Security/ohrana_dver.png" type="Texture" id=7]
+[ext_resource path="res://Data/Assets/Locations/Security/ohrana-klava.png" type="Texture" id=8]
 
 [sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+onready var player = get_node(\"Player\")
+
+onready var trash1 = get_node(\"Trash1\")
+onready var trash2 = get_node(\"Trash2\")
+onready var pc = get_node(\"Pc\")
+onready var keyboard = get_node(\"KeyBoard\")
+onready var ventil = get_node(\"Ventil\")
+onready var door = get_node(\"Door\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	player.position.x = 950
+	player.get_node(\"Sprite\").flip_h = true
+	pass # Replace with function body.
+
+
+func _on_Trash2_pressed():
+	player.move_to_object(trash2)
+
+
+func _on_Trash1_pressed():
+	player.move_to_object(trash1)
+
+
+func _on_Pc_pressed():
+	player.move_to_object(pc)
+
+
+func _on_KeyBoard_pressed():
+	player.move_to_object(keyboard)
+
+
+func _on_Ventil_pressed():
+	player.move_to_object(ventil)
+
+
+func _on_Door_pressed():
+	player.move_to_object(door)
+"
+
+[sub_resource type="GDScript" id=2]
 script/source = "extends Button
 
 
@@ -22,10 +74,11 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/MainScene.tscn\")
 "
 
 [node name="SecurityRoom" type="Control"]
+script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -40,14 +93,85 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 600.012, 516.224 )
+position = Vector2( 639.968, 516.224 )
 
 [node name="Button" type="Button" parent="."]
-margin_left = 141.897
-margin_top = 79.5403
-margin_right = 251.897
-margin_bottom = 127.54
-script = SubResource( 1 )
+margin_left = 1099.2
+margin_top = 117.308
+margin_right = 1228.2
+margin_bottom = 165.307
+text = "back to priemnaya"
+script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Trash2" type="TextureButton" parent="."]
+margin_left = 304.056
+margin_top = 470.933
+margin_right = 374.056
+margin_bottom = 544.933
+texture_normal = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trash1" type="TextureButton" parent="."]
+margin_left = 224.86
+margin_top = 520.43
+margin_right = 264.86
+margin_bottom = 560.43
+texture_normal = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pc" type="TextureButton" parent="."]
+margin_left = 438.0
+margin_top = 395.0
+margin_right = 652.0
+margin_bottom = 435.0
+texture_normal = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyBoard" type="TextureButton" parent="."]
+margin_left = 281.428
+margin_top = 446.891
+margin_right = 321.428
+margin_bottom = 486.891
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Door" type="TextureButton" parent="."]
+margin_left = 833.0
+margin_top = 175.0
+margin_right = 1033.0
+margin_bottom = 517.0
+texture_normal = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ventil" type="TextureButton" parent="."]
+margin_left = 847.0
+margin_top = 55.0
+margin_right = 1034.0
+margin_bottom = 157.0
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Trash2" to="." method="_on_Trash2_pressed"]
+[connection signal="pressed" from="Trash1" to="." method="_on_Trash1_pressed"]
+[connection signal="pressed" from="Pc" to="." method="_on_Pc_pressed"]
+[connection signal="pressed" from="KeyBoard" to="." method="_on_KeyBoard_pressed"]
+[connection signal="pressed" from="Door" to="." method="_on_Door_pressed"]
+[connection signal="pressed" from="Ventil" to="." method="_on_Ventil_pressed"]

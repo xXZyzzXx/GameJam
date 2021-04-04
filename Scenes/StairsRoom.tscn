@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Data/Assets/Locations/stairs.png" type="Texture" id=1]
+[ext_resource path="res://Data/Assets/Locations/lestnica.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Bg.gd" type="Script" id=3]
 
@@ -22,7 +22,49 @@ func _ready():
 #func _process(delta):
 #	pass
 func _pressed():
-	SceneChanger.goto_scene(\"res://Scenes/OfficeScene.tscn\")
+	SceneChanger.goto_scene(\"res://Scenes/OfficeRoom.tscn\")
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+func _pressed():
+	SceneChanger.goto_scene(\"res://Scenes/SkladRoom.tscn\")
+"
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+func _pressed():
+	SceneChanger.goto_scene(\"res://Scenes/KladovayaRoom.tscn\")
 "
 
 [node name="StairsRoom" type="Control"]
@@ -47,7 +89,30 @@ margin_left = 141.897
 margin_top = 79.5403
 margin_right = 251.897
 margin_bottom = 127.54
+text = "back to office"
 script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 1088.75
+margin_top = 116.54
+margin_right = 1198.75
+margin_bottom = 164.539
+text = "sklad"
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 542.163
+margin_top = 96.3582
+margin_right = 652.163
+margin_bottom = 144.358
+text = "kladovaya"
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
